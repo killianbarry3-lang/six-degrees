@@ -36,6 +36,27 @@ main{max-width:1180px;padding-top:55px}.game-head{margin-bottom:34px}.eyebrow{co
 @media(max-width:600px){.finish-screen{padding:12px}.finish-card{min-height:calc(100vh - 24px);padding:30px 24px;border-radius:17px}.finish-card h2{letter-spacing:-2.5px}.finish-score{letter-spacing:-4px;margin:8px 0 24px}.finish-stats{gap:8px}.finish-stat{padding:14px 12px}.finish-stat b{font-size:21px}.finish-hint{margin:15px 0 25px}}
 @media(max-width:720px){.board-top{align-items:flex-start}.top-tools{width:100%;justify-content:space-between;flex-wrap:wrap}.mode-tabs{order:0}.stopwatch{order:1;margin-left:auto}.controls{order:2}.custom-setup{padding:14px}.custom-fields{flex-wrap:wrap}.custom-fields input{flex:1 1 100%;height:42px}.custom-fields button{height:40px}.intro{font-size:15px}}
 
+/* Fit the entire route inside the map panel, including the destination. */
+.map-scroll{display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:0;padding:10px}
+.map-diagram{display:block;width:100%;height:auto!important;max-width:100%;flex:0 1 auto}
+/* Show the game through a dimmed backdrop around a compact result card. */
+.finish-screen{background:#10251d80;backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px);padding:20px}
+.finish-card{width:min(660px,100%);min-height:0;padding:clamp(24px,4vw,46px);border-radius:18px;background:linear-gradient(145deg,#245342f2,#17382ff2);box-shadow:0 25px 80px #071b1860}
+.finish-card h2{font-size:clamp(36px,5vw,54px);letter-spacing:-2.5px;margin:13px 0 8px}
+.finish-score-label{margin-top:28px}
+.finish-score{font-size:clamp(64px,10vw,96px);letter-spacing:-5px;margin:5px 0 20px}
+.finish-hint{margin:14px 0 22px}
+@media(max-width:600px){.map-scroll{padding:6px}.finish-screen{padding:12px}.finish-card{min-height:0;padding:26px 22px}.finish-score{font-size:72px;letter-spacing:-3px}}
+
+/* Keep the hero compact so the game starts higher in the viewport. */
+main{padding-top:34px}
+.game-head{margin-bottom:22px;gap:24px}
+.eyebrow{font-size:9px;letter-spacing:1.2px}
+h1{font-size:clamp(44px,5.4vw,64px);line-height:.98;letter-spacing:-3.5px;margin:12px 0 10px;max-width:620px}
+.intro{font-size:14px;line-height:1.45;max-width:490px}
+.daily{padding:9px 12px}
+@media(max-width:720px){main{padding-top:26px}.game-head{gap:12px;margin-bottom:17px}h1{font-size:clamp(42px,10vw,58px);letter-spacing:-2.6px;margin:10px 0 8px}.intro{font-size:13px;line-height:1.4;max-width:100%}.daily{padding:8px 10px}}
+
 </style>
 </head>
 <body>
