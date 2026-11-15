@@ -243,6 +243,11 @@ html{scroll-padding-top:0}
 #gameArea{height:calc(100vh - 76px);height:calc(100svh - 76px);scroll-margin-top:70px}
 @media(max-width:720px){#gameArea{height:auto;scroll-margin-top:60px}}
 
+
+.finish-score{display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.finish-score small{font:600 clamp(16px,2.5vw,23px) 'Space Grotesk',sans-serif;letter-spacing:0;color:#c5d4c8}
+@media(max-width:600px){.finish-score{gap:6px}.finish-score small{font-size:16px}}
+
 </style>
 </head>
 <body>
@@ -259,7 +264,7 @@ html{scroll-padding-top:0}
   <footer><span>MADE FOR THE CURIOUS &nbsp;·&nbsp; POWERED BY WIKIPEDIA</span><a href="https://www.wikipedia.org/" target="_blank" rel="noopener">Explore Wikipedia ↗</a></footer>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<div class="finish-screen" id="finishScreen" role="dialog" aria-modal="true" aria-labelledby="finishTitle" aria-hidden="true"><section class="finish-card"><button class="finish-close" id="finishClose" aria-label="Close results">×</button><div class="finish-kicker">Connection complete</div><h2 id="finishTitle">You linked the unlikely.</h2><div class="finish-pair" id="finishPair"></div><div class="finish-score-label">YOUR OVERALL SCORE</div><div class="finish-score" id="finishScore">1,000</div><div class="finish-stats"><div class="finish-stat"><span>HOPS</span><b id="finishHops">0</b></div><div class="finish-stat"><span>TIME</span><b id="finishTime">00:00</b></div></div><p class="finish-hint">Fewer hops and a faster time raise your score. Keep exploring and beat your best.</p><div class="finish-actions"><button class="primary" id="finishAgain">Play this pair again ↻</button><button id="finishRoute">See your connection map ↓</button></div></section></div>
+<div class="finish-screen" id="finishScreen" role="dialog" aria-modal="true" aria-labelledby="finishTitle" aria-hidden="true"><section class="finish-card"><button class="finish-close" id="finishClose" aria-label="Close results">×</button><div class="finish-kicker">Connection complete</div><h2 id="finishTitle">You linked the unlikely.</h2><div class="finish-pair" id="finishPair"></div><div class="finish-score-label">YOUR OVERALL SCORE</div><div class="finish-score"><span id="finishScore">1,000</span><small> / 1,000</small></div><div class="finish-stats"><div class="finish-stat"><span>HOPS</span><b id="finishHops">0</b></div><div class="finish-stat"><span>TIME</span><b id="finishTime">00:00</b></div></div><p class="finish-hint">Fewer hops and a faster time raise your score. Keep exploring and beat your best.</p><div class="finish-actions"><button class="primary" id="finishAgain">Play this pair again ↻</button><button id="finishRoute">See your connection map ↓</button></div></section></div>
 <div class="modal-backdrop" id="modal"><div class="modal"><button class="modal-close" id="closeModal" aria-label="Close">×</button><h2>Follow your curiosity.</h2><p>Connect two Wikipedia articles by following real links. Pick the daily puzzle, get a random pair, or set your own start and destination.</p><ol><li>Choose Daily, Random, or Custom mode.</li><li>Type the title of a page linked from your current article; each hop is checked against Wikipedia.</li><li>Your stopwatch starts on your first hop. Keep exploring until you reach your destination.</li></ol><button class="modal-start" id="gotIt">Got it, let’s go →</button></div></div>
 <script>
 const pairs=[['Velcro','The Moon','An invention inspired by nature','Our closest celestial neighbor'],['Jazz','The Eiffel Tower','A sound that changed music','A landmark built for a world’s fair'],['Honey bee','The Mona Lisa','A tiny pollinator','The world’s most famous portrait'],['Volcano','Chocolate','A force that reshapes the earth','A treat with ancient roots'],['Vincent van Gogh','The Pacific Ocean','A painter who saw the world differently','The largest ocean on Earth'],['Bicycle','The Northern Lights','Two wheels, endless possibilities','A light show in the polar sky'],['Octopus','The Beatles','A remarkably clever sea creature','A band that changed pop music']];
