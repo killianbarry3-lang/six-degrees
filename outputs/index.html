@@ -237,6 +237,12 @@ main{padding-top:0}
 .metric-pill:before{font-size:7px;letter-spacing:1.1px}
 @media(max-width:620px){.map-toolbar{flex-wrap:wrap;row-gap:8px}.map-title-group{gap:8px}.map-title-group .section-title{font-size:14px}.map-view-btn{padding:5px 8px}.metric-pill{width:60px;height:42px;font-size:14px}}
 
+
+/* Align the game below the sticky banner without double-counting scroll padding. */
+html{scroll-padding-top:0}
+#gameArea{height:calc(100vh - 76px);height:calc(100svh - 76px);scroll-margin-top:70px}
+@media(max-width:720px){#gameArea{height:auto;scroll-margin-top:60px}}
+
 </style>
 </head>
 <body>
