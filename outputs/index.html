@@ -57,28 +57,208 @@ h1{font-size:clamp(44px,5.4vw,64px);line-height:.98;letter-spacing:-3.5px;margin
 .daily{padding:9px 12px}
 @media(max-width:720px){main{padding-top:26px}.game-head{gap:12px;margin-bottom:17px}h1{font-size:clamp(42px,10vw,58px);letter-spacing:-2.6px;margin:10px 0 8px}.intro{font-size:13px;line-height:1.4;max-width:100%}.daily{padding:8px 10px}}
 
+
+/* Fit all route nodes inside the map; do not pan to only the latest hop. */
+.map-scroll{width:100%;min-width:0;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:0;padding:10px}
+.map-diagram{display:block;width:100%;min-width:0;max-width:100%;height:auto!important;flex:1 1 0}
+/* Let the game use the page width without an enclosing card. */
+main{max-width:none;width:100%;padding-left:clamp(20px,4vw,64px);padding-right:clamp(20px,4vw,64px)}
+.board{border:0;border-radius:0;box-shadow:none;background:transparent;overflow:visible}
+.board-top{border-radius:10px 10px 0 0}
+@media(max-width:720px){main{padding-left:16px;padding-right:16px}.board-top{border-radius:9px 9px 0 0}}
+
+/* Frameless game layout: no enclosing box or boxed-in game panels. */
+.board,.board-top,.route,.lower,.explore,.right-panel{background:transparent;border:0;border-radius:0;box-shadow:none}
+.board-top{padding:14px 0;border-bottom:1px solid #cbd8cb}
+.round-label{color:#65766a}.round-label b{color:var(--green)}
+.icon-btn{border-color:#c5d2c4;color:#52665a;background:transparent}.icon-btn:hover{border-color:var(--green);color:var(--green);background:#ffffff70}
+.mode-tab{border-color:#b8c9b5;background:transparent;color:#385345}.mode-tab.active{background:var(--green);border-color:var(--green);color:#fff}
+.stopwatch{color:var(--green)}
+.route{padding-left:0;padding-right:0;background:transparent}
+.endpoint,.endpoint.goal{background:transparent;border:0;border-radius:0;padding-left:0;padding-right:0}
+.endpoint:after{display:none}
+.lower{border-top:1px solid #cbd8cb;grid-template-columns:minmax(280px,.8fr) minmax(0,1.6fr)}
+.explore{padding-left:0;border:0}
+.right-panel{padding-right:0}
+.current-card{background:transparent;border:0;border-left:3px solid #9cb38c;border-radius:0;box-shadow:none;padding:7px 0 7px 13px;margin:13px 0 15px}
+.map-scroll{background:transparent;background-image:radial-gradient(#d9e2d5 .8px,transparent .8px);border:0;border-radius:0}
+.map-edge-label{stroke:var(--paper)}
+.custom-setup{background:#ffffff80;border:0;border-top:1px solid #cbd8cb;border-bottom:1px solid #cbd8cb}
+@media(max-width:720px){.board-top{border-radius:0;padding:12px 0}.route{padding-left:0;padding-right:0}.explore,.right-panel{padding-left:0;padding-right:0}.lower{grid-template-columns:minmax(0,1fr)}}
+
+/* Refine the frameless layout so its controls and route still feel grouped. */
+.board-top{align-items:center;gap:18px;padding:13px 0 15px}
+.round-label{font-size:10px;letter-spacing:.9px;white-space:nowrap}
+.top-tools{gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.mode-tabs{gap:3px;padding:3px;border:1px solid #d2ded0;border-radius:999px;background:#e4ebe0}
+.mode-tab{border:0;border-radius:999px;padding:7px 13px;color:#536b58;transition:background .15s,color .15s}
+.mode-tab.active{background:#234b3a;color:#fff;box-shadow:0 2px 5px #193c2b22}
+.stopwatch{min-width:64px;padding:7px 9px;border:1px solid #d2ded0;border-radius:999px;background:#ffffff90;font-size:11px}
+.controls{gap:7px}
+.icon-btn{border-radius:999px;padding:8px 13px;font-size:11px}
+.route{grid-template-columns:minmax(0,1fr) minmax(70px,120px) minmax(0,1fr);gap:clamp(14px,3vw,42px);padding:clamp(22px,3vw,36px) 0}
+.endpoint{min-height:unset;padding:8px 0 12px;border-bottom:2px solid #b6c9ad}
+.endpoint.goal{border-bottom-color:#d3c773}
+.end-label{margin-bottom:8px;font-size:9px;letter-spacing:1.4px}
+.end-title{font-size:clamp(20px,2.2vw,28px);overflow-wrap:anywhere}
+.end-sub{font-size:12px}
+.route-mid .arrow{width:38px;height:38px;font-size:19px}
+.lower{align-items:start;gap:clamp(28px,5vw,72px);padding-top:24px}
+.explore,.right-panel{padding-top:0;padding-bottom:22px}
+.explore{padding-right:clamp(0px,3vw,38px)}
+.right-panel{padding-left:0}
+.section-head{margin-bottom:10px}
+.section-title{font-size:17px}
+.current-card{margin:12px 0 14px}
+.map-meta{margin-top:14px}
+.map-scroll{margin-top:9px;border-radius:10px;overflow:hidden}
+.search-input{border-radius:8px;background:#fffefa}
+.search-btn{border-radius:8px}
+.field-help{max-width:480px}
+@media(max-width:720px){.board-top{align-items:flex-start}.top-tools{justify-content:flex-start;gap:8px}.mode-tab{padding:7px 11px}.route{grid-template-columns:minmax(0,1fr) 38px minmax(0,1fr);gap:10px;padding:24px 0}.end-title{font-size:clamp(17px,5vw,22px)}.lower{gap:0;padding-top:20px}.explore{padding-right:0;padding-bottom:25px}.right-panel{padding-top:23px;border-top:1px solid #cbd8cb}.section-title{font-size:16px}}
+@media(max-width:400px){.top-tools{column-gap:6px}.controls{width:100%;justify-content:flex-end}.stopwatch{margin-left:auto}.round-label{font-size:9px}.route-mid .arrow{width:32px;height:32px}}
+
+/* Tighten spacing left behind by the removed cards and restore text contrast. */
+.lower{min-height:0;padding-top:14px;gap:clamp(20px,3vw,42px)}
+.explore,.right-panel{padding-bottom:10px}
+.current-title{color:#234b3a}
+.current-sub{color:#64766d}
+.current-label{color:#66796d}
+.current-card{margin:9px 0 11px;padding-top:4px;padding-bottom:4px}
+.route{padding-top:20px;padding-bottom:20px}
+.map-meta{margin-top:10px}
+.map-scroll{margin-top:6px}
+@media(max-width:720px){.lower{min-height:0;padding-top:12px;gap:0}.explore,.right-panel{padding-bottom:16px}.current-card{margin:8px 0 10px}.route{padding-top:17px;padding-bottom:17px}}
+
+
+/* Make elapsed time and hop count easy to spot while playing. */
+.stopwatch{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:82px;padding:7px 13px;border:1px solid #173e34;border-radius:11px;background:#173e34;color:#d9f878;font-size:19px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;box-shadow:0 4px 12px #173e3420}
+.stopwatch:before{content:'TIME';font:500 8px 'DM Mono',monospace;letter-spacing:1.4px;color:#c4d7c7}
+.hops-badge{min-width:88px;padding:9px 14px;border-radius:999px;background:#d9f878;color:#173e34;text-align:center;font-size:11px;font-weight:700;letter-spacing:.8px;box-shadow:0 3px 10px #173e3414}
+@media(max-width:720px){.stopwatch{min-width:76px;padding:7px 11px;font-size:17px}.hops-badge{min-width:82px;padding:8px 12px}}
+
+
+.round-metrics{display:flex;align-items:center;gap:8px}
+.metric-pill{width:76px;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:1px solid #b9cbb5;border-radius:11px;background:#e7efe1;color:#234b3a;box-shadow:0 3px 10px #173e3410;font:600 18px 'DM Mono',monospace;font-variant-numeric:tabular-nums;line-height:1}
+.metric-pill:before{font:500 8px 'DM Mono',monospace;letter-spacing:1.3px;color:#59725c}
+#stopwatch:before{content:'TIME'}
+#clickCount:before{content:'HOPS'}
+.route-mid:before,.route-mid:after{display:none!important}
+@media(max-width:720px){.metric-pill{width:68px;height:54px;font-size:16px}.round-metrics{gap:6px}}
+
+
+/* Clean endpoint labels and offer a tidy alternate connection-list view. */
+.endpoint,.endpoint.goal{border:0!important}
+.endpoint .end-label{display:flex;align-items:center;gap:8px}
+.endpoint .end-label:before{content:'';width:8px;height:8px;border-radius:50%;background:#234b3a;box-shadow:0 0 0 4px #234b3a18}
+.endpoint.goal .end-label:before{background:#b7a832;box-shadow:0 0 0 4px #b7a83220}
+.map-view-switch{display:inline-flex;gap:3px;padding:3px;border:1px solid #d2ded0;border-radius:999px;background:#e4ebe0;margin:8px 0 4px}
+.map-view-btn{border:0;border-radius:999px;padding:6px 14px;background:transparent;color:#536b58;font:500 10px 'DM Mono',monospace;letter-spacing:.5px;cursor:pointer}
+.map-view-btn.active{background:#234b3a;color:#fff;box-shadow:0 2px 5px #193c2b22}
+.map-scroll[hidden],.map-meta[hidden],.map-copy[hidden],.connection-list[hidden]{display:none!important}
+.connection-list{list-style:none;margin:7px 0 0;padding:2px 0;max-height:400px;overflow:auto;border-top:1px solid #d7e1d4}
+.connection-row{display:grid;grid-template-columns:74px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:58px;padding:9px 8px;border-bottom:1px solid #dfe6dc}
+.connection-step,.connection-state{font:500 9px 'DM Mono',monospace;letter-spacing:.7px;color:#718273}
+.connection-name{font:600 14px 'Space Grotesk',sans-serif;color:#234b3a;overflow-wrap:anywhere}
+.connection-state{justify-self:end;padding:5px 8px;border-radius:999px;background:#e6eddf;color:#56704e}
+.connection-row:first-child .connection-state{background:#e2eee2;color:#285b42}
+.connection-empty{padding:28px 10px;color:#718273;font-size:13px}
+@media(max-width:520px){.connection-row{grid-template-columns:54px minmax(0,1fr);gap:8px}.connection-state{grid-column:2;justify-self:start;margin-top:-3px}.connection-name{font-size:13px}}
+
+
+.connection-list{height:clamp(220px,38vh,420px);max-height:none;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#aebda8 transparent}
+.connection-list[hidden]{display:none!important}
+
+
+/* The first screen introduces the game; the CTA takes players to the board. */
+html{scroll-behavior:smooth;scroll-padding-top:18px}
+main{padding-top:0}
+.game-head{min-height:calc(100vh - 70px);min-height:calc(100svh - 70px);align-items:center;margin:0;gap:clamp(24px,7vw,110px);padding:34px 0 56px}
+.game-head>div:first-child{max-width:690px}
+.game-head h1{font-size:clamp(54px,8vw,94px);line-height:.94;letter-spacing:-5px;margin:19px 0 17px}
+.game-head .intro{font-size:clamp(15px,1.5vw,18px);line-height:1.55;max-width:580px}
+.hero-cta{display:inline-flex;align-items:center;gap:24px;margin-top:28px;padding:13px 18px;border-radius:999px;background:#234b3a;color:#fff;text-decoration:none;font-size:13px;font-weight:700;box-shadow:0 8px 20px #173e3420;transition:transform .15s,background .15s}
+.hero-cta span{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#d9f878;color:#173e34;font-size:16px}
+.hero-cta:hover{transform:translateY(2px);background:#173e34}
+#gameArea{scroll-margin-top:16px}
+@media(max-width:720px){.game-head{min-height:calc(100vh - 60px);min-height:calc(100svh - 60px);flex-direction:column;align-items:flex-start;justify-content:center;gap:22px;padding:30px 0 44px;margin:0}.game-head h1{font-size:clamp(48px,12vw,72px);letter-spacing:-3.5px;margin:13px 0 12px}.game-head .intro{font-size:14px;line-height:1.5}.hero-cta{margin-top:21px}.daily{align-self:flex-start}}
+
+
+/* The wordmark begins in the intro and reappears in the sticky banner on scroll. */
+.topbar{position:sticky;top:0;z-index:15;background:transparent;border-color:transparent;transition:background .25s,border-color .25s,box-shadow .25s}
+.topbar .brand{opacity:0;transform:translateY(-7px);transition:opacity .22s,transform .22s}.topbar:not(.scrolled) .nav,.topbar:not(.scrolled) .how{color:#4c6254}.topbar:not(.scrolled) .live{color:#315b43}
+.topbar.scrolled{background:var(--green);border-color:#315d50;box-shadow:0 5px 18px #173e3420}
+.topbar.scrolled .brand{opacity:1;transform:translateY(0)}
+.hero-wordmark{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:24px;color:#173e34;font:700 clamp(20px,2.5vw,28px) 'Space Grotesk',sans-serif;letter-spacing:-.8px}
+.hero-wordmark .brand-icon{width:36px;height:36px;background:#173e34;color:#d9f878;font-size:19px}
+.game-head{justify-content:center;text-align:center}
+.game-head>div:first-child{display:flex;flex-direction:column;align-items:center;width:min(740px,100%);max-width:740px;text-align:center}
+.game-head .intro{max-width:600px}
+.game-head .daily{align-self:center;margin-top:12px;padding:5px 8px;border:0;background:transparent;opacity:.5;font-size:9px}
+.game-head .daily-mark{width:20px;height:20px;font-size:12px;background:#dfe8d9;color:#58705a}
+.hero-cta{align-self:center}
+@media(max-width:720px){.game-head{align-items:center}.game-head>div:first-child{align-items:center;text-align:center}.game-head .daily{align-self:center;margin-top:8px}.hero-wordmark{margin-bottom:20px}.topbar .brand{opacity:0}.topbar.scrolled .brand{opacity:1}}
+
+
+/* Keep the challenge date between the intro and the start button. */
+.game-head>div:first-child .daily{order:0;align-self:center;margin:13px 0 0;padding:4px 8px;border:0;background:transparent;opacity:.48;font-size:9px}
+.game-head>div:first-child .hero-cta{order:1;margin-top:13px}
+.game-head>div:first-child .intro{order:-1}
+.game-head>div:first-child .hero-wordmark,.game-head>div:first-child .eyebrow,.game-head>div:first-child h1{order:-2}
+/* The play area fills the viewport below the sticky banner after the CTA scroll. */
+#gameArea{height:calc(100vh - 70px);height:calc(100svh - 70px);min-height:0;display:flex;flex-direction:column;scroll-margin-top:70px}
+#gameArea>.route{flex:0 0 auto}
+#gameArea>.lower{flex:1;min-height:0;align-items:stretch}
+#gameArea .right-panel{display:flex;flex-direction:column;min-height:0}
+#gameArea .map-scroll,#gameArea .connection-list{flex:1 1 0;min-height:0;height:auto;max-height:none}
+#gameArea .map-scroll{width:100%}
+#gameArea .panel-actions{flex:0 0 auto}
+@media(max-width:720px){#gameArea{height:auto;min-height:0;scroll-margin-top:60px;display:block}#gameArea>.lower{display:grid;min-height:0}#gameArea .right-panel{display:flex;min-height:0}#gameArea .map-scroll{flex:none;min-height:260px;height:auto}#gameArea .connection-list{flex:none;height:clamp(220px,38vh,420px);max-height:none}.game-head>div:first-child .daily{margin-top:9px}.game-head>div:first-child .hero-cta{margin-top:12px}}
+
+
+/* Six linked points surrounding a shared hub form the brand mark. */
+.brand-mark{display:block;flex:0 0 30px;width:30px;height:30px;overflow:visible}
+.mark-bg{fill:#d9f878;stroke:#ffffff35;stroke-width:1}
+.mark-links{fill:none;stroke:#173e34;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mark-nodes circle{fill:#d9f878;stroke:#173e34;stroke-width:1.5}
+.mark-hub{fill:#fffefa;stroke:#173e34;stroke-width:1.8}
+.hero-wordmark .brand-mark{width:38px;height:38px;flex-basis:38px}
+.topbar.scrolled .brand-mark{width:30px;height:30px}
+
+
+/* Compact map controls into one aligned toolbar. */
+.map-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;min-width:0}
+.map-title-group{display:flex;align-items:center;gap:11px;min-width:0}
+.map-title-group .section-title{font-size:15px;white-space:nowrap}
+.map-view-switch{flex:0 0 auto;margin:0;padding:2px;gap:1px;border-radius:999px}
+.map-view-btn{padding:5px 10px;font-size:9px;line-height:1.1}
+.round-metrics{flex:0 0 auto;gap:6px}
+.metric-pill{width:66px;height:44px;border-radius:9px;gap:2px;font-size:15px;box-shadow:none}
+.metric-pill:before{font-size:7px;letter-spacing:1.1px}
+@media(max-width:620px){.map-toolbar{flex-wrap:wrap;row-gap:8px}.map-title-group{gap:8px}.map-title-group .section-title{font-size:14px}.map-view-btn{padding:5px 8px}.metric-pill{width:60px;height:42px;font-size:14px}}
+
 </style>
 </head>
 <body>
-<header class="topbar"><div class="brand"><span class="brand-icon">↗</span> six degrees</div><div class="nav"><span class="live"><i></i> UNLIMITED WIKIPEDIA HOPS</span><button class="how" id="howBtn">How to play ↗</button></div></header>
+<header class="topbar"><div class="brand"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle class="mark-bg" cx="24" cy="24" r="23"/><g class="mark-links"><path d="M24 24 24 7M24 24 39 15M24 24 39 33M24 24 24 41M24 24 9 33M24 24 9 15"/><path d="M24 7 39 15 39 33 24 41 9 33 9 15Z"/></g><g class="mark-nodes"><circle cx="24" cy="7" r="3"/><circle cx="39" cy="15" r="3"/><circle cx="39" cy="33" r="3"/><circle cx="24" cy="41" r="3"/><circle cx="9" cy="33" r="3"/><circle cx="9" cy="15" r="3"/></g><circle class="mark-hub" cx="24" cy="24" r="4.5"/></svg> six degrees</div><div class="nav"><button class="how" id="howBtn">How to play ↗</button></div></header>
 <main>
-  <div class="game-head"><div><div class="eyebrow">A daily Wikipedia connection puzzle</div><h1>Can you link<br>the unlikely?</h1><p class="intro">Start at one Wikipedia article and type your way to another, following real links one page at a time. Pick today’s challenge, roll a random pair, or choose your own. <strong>Every route is yours to discover.</strong></p></div><div class="daily"><span class="daily-mark">✳</span><span id="dateLabel">TODAY’S CHALLENGE</span></div></div>
-  <section class="board" aria-label="Six Degrees game">
-    <div class="board-top"><div class="round-label" id="roundLabel">TODAY’S PAIR &nbsp;·&nbsp; <b>NO. <span id="puzzleNum">042</span></b></div><div class="top-tools"><div class="mode-tabs" role="tablist" aria-label="Game mode"><button class="mode-tab active" data-mode="daily" role="tab" aria-selected="true">Daily</button><button class="mode-tab" data-mode="random" role="tab" aria-selected="false">Random</button><button class="mode-tab" data-mode="custom" role="tab" aria-selected="false">Custom</button></div><div class="stopwatch" id="stopwatch" aria-label="Elapsed time">00:00</div><div class="controls"><button class="icon-btn" id="newBtn" title="Get another random pair" hidden>↻ &nbsp;New pair</button><button class="icon-btn" id="resetBtn"><span class="reset-icon">⟲</span>Start over</button></div></div></div>
+  <div class="game-head"><div><div class="hero-wordmark"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle class="mark-bg" cx="24" cy="24" r="23"/><g class="mark-links"><path d="M24 24 24 7M24 24 39 15M24 24 39 33M24 24 24 41M24 24 9 33M24 24 9 15"/><path d="M24 7 39 15 39 33 24 41 9 33 9 15Z"/></g><g class="mark-nodes"><circle cx="24" cy="7" r="3"/><circle cx="39" cy="15" r="3"/><circle cx="39" cy="33" r="3"/><circle cx="24" cy="41" r="3"/><circle cx="9" cy="33" r="3"/><circle cx="9" cy="15" r="3"/></g><circle class="mark-hub" cx="24" cy="24" r="4.5"/></svg><span>six degrees</span></div><div class="eyebrow">A daily Wikipedia connection puzzle</div><h1>Can you link<br>the unlikely?</h1><p class="intro">Start at one Wikipedia article and type your way to another, following real links one page at a time. Pick today’s challenge, roll a random pair, or choose your own. <strong>Every route is yours to discover.</strong></p><div class="daily"><span class="daily-mark">✳</span><span id="dateLabel">TODAY’S CHALLENGE</span></div><a class="hero-cta" href="#gameArea">Start connecting <span aria-hidden="true">↓</span></a></div></div>
+  <section class="board" id="gameArea" aria-label="Six Degrees game">
+    <div class="board-top"><div class="round-label" id="roundLabel">TODAY’S PAIR &nbsp;·&nbsp; <b>NO. <span id="puzzleNum">042</span></b></div><div class="top-tools"><div class="mode-tabs" role="tablist" aria-label="Game mode"><button class="mode-tab active" data-mode="daily" role="tab" aria-selected="true">Daily</button><button class="mode-tab" data-mode="random" role="tab" aria-selected="false">Random</button><button class="mode-tab" data-mode="custom" role="tab" aria-selected="false">Custom</button></div><div class="controls"><button class="icon-btn" id="newBtn" title="Get another random pair" hidden>↻ &nbsp;New pair</button><button class="icon-btn" id="resetBtn"><span class="reset-icon">⟲</span>Start over</button></div></div></div>
     <form class="custom-setup" id="customForm" hidden><p>Choose any two Wikipedia articles to connect.</p><div class="custom-fields"><input id="customStart" placeholder="Starting article" aria-label="Starting article"><input id="customGoal" placeholder="Destination article" aria-label="Destination article"><button type="submit">Start custom game →</button></div></form>
-    <div class="route"><div class="endpoint"><div class="end-label">START HERE</div><div class="end-title" id="startTitle">Velcro</div><div class="end-sub" id="startSub">An invention inspired by nature</div></div><div class="route-mid"><span class="arrow">→</span><small>NO HOP LIMIT</small></div><div class="endpoint goal"><div class="end-label">GET TO THERE</div><div class="end-title" id="goalTitle">The Moon</div><div class="end-sub" id="goalSub">Our closest celestial neighbor</div></div></div>
+    <div class="route"><div class="endpoint"><div class="end-label">START HERE</div><div class="end-title" id="startTitle">Velcro</div><div class="end-sub" id="startSub">An invention inspired by nature</div></div><div class="route-mid"><span class="arrow">→</span></div><div class="endpoint goal"><div class="end-label">GET TO THERE</div><div class="end-title" id="goalTitle">The Moon</div><div class="end-sub" id="goalSub">Our closest celestial neighbor</div></div></div>
     <div class="lower"><section class="explore"><div class="section-head"><div class="section-title">Your next connection</div><div class="section-note">TYPE AN ARTICLE</div></div><div class="current-card"><div class="current-label">CURRENT ARTICLE</div><div class="current-title" id="currentTitle">Velcro</div><div class="current-sub">Choose a page linked from this article</div></div><form class="search-area" id="searchForm"><input id="searchInput" class="search-input" placeholder="Type a linked article title…" autocomplete="off" autocorrect="on" spellcheck="true" aria-label="Next Wikipedia article" /><button id="searchBtn" class="search-btn" type="submit">Enter →</button></form><p class="field-help">Each hop is checked against Wikipedia. Clear spelling mistakes are corrected automatically; keep going until you reach the destination.</p></section>
-      <section class="right-panel"><div class="section-head right-head"><div class="section-title">Your connection map</div><div class="hops-badge" id="clickCount">0 HOPS</div></div><p class="map-copy">A 2D trail of verified links. Directions and distances are relative to the destination on the map; distance is unknown until you connect to it.</p><div class="map-meta"><span>START</span><b id="distanceLabel">TARGET DISTANCE UNKNOWN</b><span>DESTINATION</span></div><div class="map-scroll" id="mapScroll"><div class="map-diagram" id="mapDiagram" aria-label="Map showing your article path" aria-live="polite"></div></div><div class="status" id="status" role="status"></div><div class="panel-actions"><button class="text-btn" id="undoBtn" disabled>← Undo last hop</button><button class="text-btn external" id="giveupBtn">Open current article ↗</button></div></section></div>
+      <section class="right-panel"><div class="map-toolbar"><div class="map-title-group"><div class="section-title" id="mapViewTitle">Your connection map</div><div class="map-view-switch" role="group" aria-label="Connection view"><button type="button" class="map-view-btn active" data-map-view="map" aria-pressed="true">Map</button><button type="button" class="map-view-btn" data-map-view="list" aria-pressed="false">List</button></div></div><div class="round-metrics"><div class="stopwatch metric-pill" id="stopwatch" aria-label="Elapsed time">00:00</div><div class="hops-badge metric-pill" id="clickCount" aria-label="Hops taken">0</div></div></div><p class="map-copy" id="mapCopy">A 2D trail of verified links. Directions and distances are relative to the destination on the map; distance is unknown until you connect to it.</p><div class="map-meta" id="mapMeta"><span>START</span><b id="distanceLabel">TARGET DISTANCE UNKNOWN</b><span>DESTINATION</span></div><div class="map-scroll" id="mapScroll"><div class="map-diagram" id="mapDiagram" aria-label="Map showing your article path" aria-live="polite"></div></div><ol class="connection-list" id="connectionList" aria-label="Connections made" aria-live="polite" hidden></ol><div class="status" id="status" role="status"></div><div class="panel-actions"><button class="text-btn" id="undoBtn" disabled>← Undo last hop</button><button class="text-btn external" id="giveupBtn">Open current article ↗</button></div></section></div>
   </section>
   <footer><span>MADE FOR THE CURIOUS &nbsp;·&nbsp; POWERED BY WIKIPEDIA</span><a href="https://www.wikipedia.org/" target="_blank" rel="noopener">Explore Wikipedia ↗</a></footer>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="finish-screen" id="finishScreen" role="dialog" aria-modal="true" aria-labelledby="finishTitle" aria-hidden="true"><section class="finish-card"><button class="finish-close" id="finishClose" aria-label="Close results">×</button><div class="finish-kicker">Connection complete</div><h2 id="finishTitle">You linked the unlikely.</h2><div class="finish-pair" id="finishPair"></div><div class="finish-score-label">YOUR OVERALL SCORE</div><div class="finish-score" id="finishScore">1,000</div><div class="finish-stats"><div class="finish-stat"><span>HOPS</span><b id="finishHops">0</b></div><div class="finish-stat"><span>TIME</span><b id="finishTime">00:00</b></div></div><p class="finish-hint">Fewer hops and a faster time raise your score. Keep exploring and beat your best.</p><div class="finish-actions"><button class="primary" id="finishAgain">Play this pair again ↻</button><button id="finishRoute">See your connection map ↓</button></div></section></div>
-<div class="modal-backdrop" id="modal"><div class="modal"><button class="modal-close" id="closeModal" aria-label="Close">×</button><h2>Follow your curiosity.</h2><p>Connect two Wikipedia articles by following real links. Pick the daily puzzle, get a random pair, or set your own start and destination.</p><ol><li>Choose Daily, Random, or Custom mode.</li><li>Type the title of a page linked from your current article; each hop is checked against Wikipedia.</li><li>Your stopwatch starts on your first hop. There’s no hop limit.</li></ol><button class="modal-start" id="gotIt">Got it, let’s go →</button></div></div>
+<div class="modal-backdrop" id="modal"><div class="modal"><button class="modal-close" id="closeModal" aria-label="Close">×</button><h2>Follow your curiosity.</h2><p>Connect two Wikipedia articles by following real links. Pick the daily puzzle, get a random pair, or set your own start and destination.</p><ol><li>Choose Daily, Random, or Custom mode.</li><li>Type the title of a page linked from your current article; each hop is checked against Wikipedia.</li><li>Your stopwatch starts on your first hop. Keep exploring until you reach your destination.</li></ol><button class="modal-start" id="gotIt">Got it, let’s go →</button></div></div>
 <script>
 const pairs=[['Velcro','The Moon','An invention inspired by nature','Our closest celestial neighbor'],['Jazz','The Eiffel Tower','A sound that changed music','A landmark built for a world’s fair'],['Honey bee','The Mona Lisa','A tiny pollinator','The world’s most famous portrait'],['Volcano','Chocolate','A force that reshapes the earth','A treat with ancient roots'],['Vincent van Gogh','The Pacific Ocean','A painter who saw the world differently','The largest ocean on Earth'],['Bicycle','The Northern Lights','Two wheels, endless possibilities','A light show in the polar sky'],['Octopus','The Beatles','A remarkably clever sea creature','A band that changed pop music']];
 const familiarTopics=[['The Moon','Space'],['The Sun','Space'],['Mars','Space'],['Jupiter','Space'],['Earth','Space'],['Black hole','Space'],['Dinosaur','Nature'],['Shark','Nature'],['Octopus','Nature'],['Honey bee','Nature'],['Volcano','Nature'],['Amazon rainforest','Nature'],['The Beatles','Music'],['Taylor Swift','Music'],['Elvis Presley','Music'],['Jazz','Music'],['Michael Jackson','Music'],['The Mona Lisa','Art'],['Vincent van Gogh','Art'],['Leonardo da Vinci','Art'],['The Eiffel Tower','Landmark'],['Statue of Liberty','Landmark'],['Great Wall of China','Landmark'],['New York City','City'],['Paris','City'],['Tokyo','City'],['Pizza','Food'],['Chocolate','Food'],['Coffee','Food'],['Bicycle','Invention'],['Internet','Invention'],['Velcro','Invention'],['Basketball','Sport'],['Olympic Games','Sport'],['Football','Sport'],['Harry Potter','Books'],['Star Wars','Film'],['Titanic','Film'],['Shrek','Film'],['Nintendo','Technology'],['Apple Inc.','Technology']];
-const $=s=>document.querySelector(s);let pairIndex=Math.floor(Date.now()/86400000)%pairs.length,pair=null,path=[],current='',pageCache=new Map(),busy=false,won=false,mode='daily',timerStarted=0,timerElapsed=0,timerInterval=null,pairReady=false,usedRandomPairs=new Set(),randomTopicUse=new Map();
+const $=s=>document.querySelector(s);let pairIndex=Math.floor(Date.now()/86400000)%pairs.length,pair=null,path=[],current='',pageCache=new Map(),busy=false,won=false,mode='daily',timerStarted=0,timerElapsed=0,timerInterval=null,pairReady=false,mapView='map',usedRandomPairs=new Set(),randomTopicUse=new Map();
 function init(){selectMode('daily')}
 function resetTimer(){clearInterval(timerInterval);timerInterval=null;timerStarted=0;timerElapsed=0;updateTimer()}
 function updateTimer(){let total=Math.floor(timerElapsed+(timerStarted?(Date.now()-timerStarted)/1000:0));$('#stopwatch').textContent=`${String(Math.floor(total/60)).padStart(2,'0')}:${String(total%60).padStart(2,'0')}`}
@@ -86,17 +266,19 @@ function startTimer(){if(!timerStarted&&!won){timerStarted=Date.now();timerInter
 function stopTimer(){if(timerStarted){timerElapsed+=(Date.now()-timerStarted)/1000;timerStarted=0}clearInterval(timerInterval);timerInterval=null;updateTimer()}
 function setPair(next,label){pair=next;pairReady=true;$('#startTitle').textContent=pair[0];$('#goalTitle').textContent=pair[1];$('#startSub').textContent=pair[2]||'A Wikipedia article';$('#goalSub').textContent=pair[3]||'A Wikipedia article';$('#roundLabel').innerHTML=`${label} &nbsp;·&nbsp; <b>NO. <span id="puzzleNum">${String(42+pairIndex).padStart(3,'0')}</span></b>`;resetGame()}
 function resetGame(){if(!pairReady)return;resetTimer();path=[pair[0]];current=pair[0];won=false;$('#status').className='status';$('#status').textContent='';$('#searchInput').disabled=false;$('#searchInput').value='';$('#searchBtn').disabled=false;$('#searchBtn').textContent='Enter →';$('#distanceLabel').textContent='TARGET DISTANCE UNKNOWN · 0 HOPS MAPPED';renderPath();loadLinks(current).catch(e=>toast(e.message))}
-function clearPair(message){pairReady=false;pair=null;path=[];current='';won=false;resetTimer();$('#startTitle').textContent=message;$('#goalTitle').textContent='Choose a destination';$('#startSub').textContent='';$('#goalSub').textContent='';$('#currentTitle').textContent='Choose a starting article';$('#clickCount').textContent='0 HOPS';$('#searchInput').disabled=true;$('#searchInput').value='';$('#searchBtn').disabled=true;$('#undoBtn').disabled=true;$('#status').className='status';$('#status').textContent='';renderMap()}
+function clearPair(message){pairReady=false;pair=null;path=[];current='';won=false;resetTimer();$('#startTitle').textContent=message;$('#goalTitle').textContent='Choose a destination';$('#startSub').textContent='';$('#goalSub').textContent='';$('#currentTitle').textContent='Choose a starting article';$('#clickCount').textContent='0';$('#searchInput').disabled=true;$('#searchInput').value='';$('#searchBtn').disabled=true;$('#undoBtn').disabled=true;$('#status').className='status';$('#status').textContent='';renderConnectionList();renderMap()}
 function dailyPair(){pairIndex=Math.floor(Date.now()/86400000)%pairs.length;$('#dateLabel').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'}).toUpperCase();setPair(pairs[pairIndex],'TODAY’S PAIR')}
 function randomPair(){clearPair('Choosing familiar topics…');let candidates=[];for(let i=0;i<familiarTopics.length;i++)for(let j=i+1;j<familiarTopics.length;j++){let a=familiarTopics[i],b=familiarTopics[j];if(a[1]===b[1])continue;let key=[a[0],b[0]].sort().join('|');if(!usedRandomPairs.has(key))candidates.push({a,b,key,score:(randomTopicUse.get(a[0])||0)+(randomTopicUse.get(b[0])||0)})}if(!candidates.length){usedRandomPairs.clear();candidates=familiarTopics.flatMap((a,i)=>familiarTopics.slice(i+1).filter(b=>b[1]!==a[1]).map(b=>({a,b,key:[a[0],b[0]].sort().join('|'),score:(randomTopicUse.get(a[0])||0)+(randomTopicUse.get(b[0])||0)})))}let lowest=Math.min(...candidates.map(item=>item.score)),freshest=candidates.filter(item=>item.score===lowest),chosen=freshest[Math.floor(Math.random()*freshest.length)];usedRandomPairs.add(chosen.key);randomTopicUse.set(chosen.a[0],(randomTopicUse.get(chosen.a[0])||0)+1);randomTopicUse.set(chosen.b[0],(randomTopicUse.get(chosen.b[0])||0)+1);setPair([chosen.a[0],chosen.b[0],`${chosen.a[1]} · a familiar topic`,`${chosen.b[1]} · a familiar topic`],'RANDOM PAIR');$('#dateLabel').textContent='RANDOM CHALLENGE'}
 function selectMode(next){mode=next;document.querySelectorAll('.mode-tab').forEach(button=>{let active=button.dataset.mode===mode;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active))});$('#newBtn').hidden=mode!=='random';$('#customForm').hidden=mode!=='custom';if(mode==='daily')dailyPair();else if(mode==='random')randomPair();else{clearPair('Choose your start page');$('#dateLabel').textContent='YOUR OWN CHALLENGE'}}
 async function resolveTitle(value){let data=await wiki({action:'query',list:'search',srsearch:value,srnamespace:0,srlimit:5});let hits=data.query.search||[];if(!hits.length)throw Error(`No Wikipedia article found for “${value}”.`);return hits.find(x=>titleNorm(x.title)===titleNorm(value))?.title||hits[0].title}
 async function startCustom(event){event.preventDefault();let a=$('#customStart').value.trim(),b=$('#customGoal').value.trim();if(!a||!b){toast('Enter both article titles first.');return}if(titleNorm(a)===titleNorm(b)){toast('Choose two different articles.');return}let button=$('#customForm button');button.disabled=true;button.textContent='Finding articles…';try{let titles=await Promise.all([resolveTitle(a),resolveTitle(b)]);if(titleNorm(titles[0])===titleNorm(titles[1]))throw Error('Those titles resolve to the same article. Choose two different pages.');$('#customStart').value=titles[0];$('#customGoal').value=titles[1];setPair([titles[0],titles[1],'Your chosen starting page','Your chosen destination'],'CUSTOM PAIR');$('#dateLabel').textContent='YOUR OWN CHALLENGE'}catch(e){toast(e.message)}finally{button.disabled=false;button.textContent='Start custom game →'}}
 function titleNorm(s){return s.replaceAll('_',' ').trim().toLowerCase()}
-function renderPath(){current=path.at(-1);$('#currentTitle').textContent=current;$('#clickCount').textContent=`${path.length-1} ${(path.length-1===1?'HOP':'HOPS')}`;$('#undoBtn').disabled=path.length<=1||busy;renderMap()}
+function renderPath(){current=path.at(-1);$('#currentTitle').textContent=current;$('#clickCount').textContent=String(path.length-1);$('#undoBtn').disabled=path.length<=1||busy;renderConnectionList();renderMap()}
+function renderConnectionList(){let list=$('#connectionList');list.replaceChildren();if(!pairReady||!path.length){let empty=document.createElement('li');empty.className='connection-empty';empty.textContent='Your visited articles will appear here.';list.append(empty);return}path.forEach((title,index)=>{let row=document.createElement('li'),step=document.createElement('span'),name=document.createElement('span'),state=document.createElement('span');row.className='connection-row';step.className='connection-step';step.textContent=index===0?'START':`HOP ${index}`;name.className='connection-name';name.textContent=title;state.className='connection-state';state.textContent=index===0?'ORIGIN':index===path.length-1?(won?'DESTINATION':'CURRENT'):'VISITED';row.append(step,name,state);list.append(row)});list.scrollTop=list.scrollHeight}
+function setMapView(view){mapView=view;let isList=view==='list';$('#mapScroll').hidden=isList;$('#mapMeta').hidden=isList;$('#mapCopy').hidden=isList;$('#connectionList').hidden=!isList;$('#mapViewTitle').textContent=isList?'Your connections':'Your connection map';document.querySelectorAll('.map-view-btn').forEach(button=>{let active=button.dataset.mapView===view;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active))})}
 function svgEl(name,attrs={}){let el=document.createElementNS('http://www.w3.org/2000/svg',name);Object.entries(attrs).forEach(([key,value])=>el.setAttribute(key,value));return el}
 function compassDirection(dx,dy){let angle=(Math.atan2(-dy,dx)*180/Math.PI+360)%360;return ['E','NE','N','NW','W','SW','S','SE'][Math.round(angle/45)%8]}
-function renderMap(){let holder=$('#mapScroll');holder.innerHTML='';if(!pairReady||!pair||!path.length){holder.innerHTML='<div class="map-empty">Choose a pair to plot your route.</div>';$('#distanceLabel').textContent='WAITING FOR TWO ARTICLES';return}let reached=won&&titleNorm(current)===titleNorm(pair[1]),count=path.length,targetX=74+(count+(reached?0:1))*154+50,width=Math.max(660,targetX+70),height=330,centerY=164,coords=path.map((_,i)=>({x:74+i*154,y:centerY+Math.sin((i+1)*1.24)*82}));let map=svgEl('svg',{class:'map-diagram',width,height,viewBox:`0 0 ${width} ${height}`,role:'img','aria-label':reached?'Completed connection map with hop distances from destination':'Explored article trail with destination at the end'});let defs=svgEl('defs');let marker=svgEl('marker',{id:'mapArrow',viewBox:'0 0 10 10',refX:'8',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto-start-reverse'});marker.append(svgEl('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'#6f9065'}));defs.append(marker);map.append(defs);let grid=svgEl('g',{class:'map-grid'});for(let x=24;x<width;x+=28)for(let y=20;y<height;y+=28)grid.append(svgEl('circle',{cx:x,cy:y,r:'1'}));map.append(grid);let target=reached?coords.at(-1):{x:targetX,y:centerY};for(let i=0;i<coords.length-1;i++){let a=coords[i],b=coords[i+1],dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy),ux=dx/dist,uy=dy/dist,from={x:a.x+ux*25,y:a.y+uy*25},to={x:b.x-ux*27,y:b.y-uy*27};map.append(svgEl('line',{x1:from.x,y1:from.y,x2:to.x,y2:to.y,class:'map-edge', 'marker-end':'url(#mapArrow)'}));let label=svgEl('text',{x:(a.x+b.x)/2,y:(a.y+b.y)/2-8,class:'map-edge-label','text-anchor':'middle'});label.textContent=`${compassDirection(dx,dy)} · 1 HOP`;map.append(label)}if(!reached){let a=coords.at(-1),dx=target.x-a.x,dy=target.y-a.y,dist=Math.hypot(dx,dy),ux=dx/dist,uy=dy/dist;map.append(svgEl('line',{x1:a.x+ux*27,y1:a.y+uy*27,x2:target.x-ux*27,y2:target.y-uy*27,class:'map-edge unknown','marker-end':'url(#mapArrow)'}));let label=svgEl('text',{x:(a.x+target.x)/2,y:(a.y+target.y)/2-10,class:'map-edge-label unknown-label','text-anchor':'middle'});label.textContent=`${compassDirection(dx,dy)} · ? HOPS`;map.append(label)}let nodes=path.map((title,i)=>({title,x:coords[i].x,y:coords[i].y,kind:i===0?'start':i===path.length-1?(reached?'destination':'current'):'visited',index:i}));if(!reached)nodes.push({title:pair[1],x:target.x,y:target.y,kind:'destination',index:path.length});nodes.forEach(nodeData=>{let group=svgEl('g',{class:`map-node ${nodeData.kind}${nodeData.kind==='current'?' current':''}`,transform:`translate(${nodeData.x} ${nodeData.y})`});group.append(svgEl('circle',{r:'22',class:'map-node-halo'}));group.append(svgEl('circle',{r:'15',class:'map-node-dot'}));let title=svgEl('title');title.textContent=nodeData.title;group.append(title);let label=svgEl('text',{x:'0',y:'43',class:'map-node-label','text-anchor':'middle'});label.textContent=nodeData.title.length>19?nodeData.title.slice(0,18)+'…':nodeData.title;group.append(label);let sub=svgEl('text',{x:'0',y:'58',class:'map-node-sub','text-anchor':'middle'});if(nodeData.kind==='destination')sub.textContent=reached?'DESTINATION':'TARGET';else if(nodeData.kind==='current')sub.textContent='YOU ARE HERE';else if(reached){let hops=path.length-1-nodeData.index;sub.textContent=hops===0?'DESTINATION':`${hops} ${hops===1?'HOP':'HOPS'} · ${compassDirection(target.x-nodeData.x,target.y-nodeData.y)} FROM END`}else sub.textContent=nodeData.index===0?'START':`HOP ${nodeData.index}`;group.append(sub);map.append(group)});holder.append(map);$('#distanceLabel').textContent=reached?'DISTANCE FROM DESTINATION':`TARGET DISTANCE UNKNOWN · ${path.length-1} HOPS MAPPED`;let focus=coords.at(-1);holder.scrollTo({left:Math.max(0,focus.x-holder.clientWidth/2),behavior:'smooth'})}
+function renderMap(){let holder=$('#mapScroll');holder.innerHTML='';if(!pairReady||!pair||!path.length){holder.innerHTML='<div class="map-empty">Choose a pair to plot your route.</div>';$('#distanceLabel').textContent='WAITING FOR TWO ARTICLES';return}let reached=won&&titleNorm(current)===titleNorm(pair[1]),count=path.length,targetX=74+(count+(reached?0:1))*154+50,width=Math.max(660,targetX+70),height=330,centerY=164,coords=path.map((_,i)=>({x:74+i*154,y:centerY+Math.sin((i+1)*1.24)*82}));let map=svgEl('svg',{class:'map-diagram',width,height,viewBox:`0 0 ${width} ${height}`,role:'img','aria-label':reached?'Completed connection map with hop distances from destination':'Explored article trail with destination at the end'});let defs=svgEl('defs');let marker=svgEl('marker',{id:'mapArrow',viewBox:'0 0 10 10',refX:'8',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto-start-reverse'});marker.append(svgEl('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'#6f9065'}));defs.append(marker);map.append(defs);let grid=svgEl('g',{class:'map-grid'});for(let x=24;x<width;x+=28)for(let y=20;y<height;y+=28)grid.append(svgEl('circle',{cx:x,cy:y,r:'1'}));map.append(grid);let target=reached?coords.at(-1):{x:targetX,y:centerY};for(let i=0;i<coords.length-1;i++){let a=coords[i],b=coords[i+1],dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy),ux=dx/dist,uy=dy/dist,from={x:a.x+ux*25,y:a.y+uy*25},to={x:b.x-ux*27,y:b.y-uy*27};map.append(svgEl('line',{x1:from.x,y1:from.y,x2:to.x,y2:to.y,class:'map-edge', 'marker-end':'url(#mapArrow)'}));let label=svgEl('text',{x:(a.x+b.x)/2,y:(a.y+b.y)/2-8,class:'map-edge-label','text-anchor':'middle'});label.textContent=`${compassDirection(dx,dy)} · 1 HOP`;map.append(label)}if(!reached){let a=coords.at(-1),dx=target.x-a.x,dy=target.y-a.y,dist=Math.hypot(dx,dy),ux=dx/dist,uy=dy/dist;map.append(svgEl('line',{x1:a.x+ux*27,y1:a.y+uy*27,x2:target.x-ux*27,y2:target.y-uy*27,class:'map-edge unknown','marker-end':'url(#mapArrow)'}));let label=svgEl('text',{x:(a.x+target.x)/2,y:(a.y+target.y)/2-10,class:'map-edge-label unknown-label','text-anchor':'middle'});label.textContent=`${compassDirection(dx,dy)} · ? HOPS`;map.append(label)}let nodes=path.map((title,i)=>({title,x:coords[i].x,y:coords[i].y,kind:i===0?'start':i===path.length-1?(reached?'destination':'current'):'visited',index:i}));if(!reached)nodes.push({title:pair[1],x:target.x,y:target.y,kind:'destination',index:path.length});nodes.forEach(nodeData=>{let group=svgEl('g',{class:`map-node ${nodeData.kind}${nodeData.kind==='current'?' current':''}`,transform:`translate(${nodeData.x} ${nodeData.y})`});group.append(svgEl('circle',{r:'22',class:'map-node-halo'}));group.append(svgEl('circle',{r:'15',class:'map-node-dot'}));let title=svgEl('title');title.textContent=nodeData.title;group.append(title);let label=svgEl('text',{x:'0',y:'43',class:'map-node-label','text-anchor':'middle'});label.textContent=nodeData.title.length>19?nodeData.title.slice(0,18)+'…':nodeData.title;group.append(label);let sub=svgEl('text',{x:'0',y:'58',class:'map-node-sub','text-anchor':'middle'});if(nodeData.kind==='destination')sub.textContent=reached?'DESTINATION':'TARGET';else if(nodeData.kind==='current')sub.textContent='YOU ARE HERE';else if(reached){let hops=path.length-1-nodeData.index;sub.textContent=hops===0?'DESTINATION':`${hops} ${hops===1?'HOP':'HOPS'} · ${compassDirection(target.x-nodeData.x,target.y-nodeData.y)} FROM END`}else sub.textContent=nodeData.index===0?'START':`HOP ${nodeData.index}`;group.append(sub);map.append(group)});holder.append(map);$('#distanceLabel').textContent=reached?'DISTANCE FROM DESTINATION':`TARGET DISTANCE UNKNOWN · ${path.length-1} HOPS MAPPED`;holder.scrollLeft=0}
 async function wiki(params){let u=new URL('https://en.wikipedia.org/w/api.php');Object.entries({...params,origin:'*',format:'json'}).forEach(([k,v])=>u.searchParams.set(k,v));let r=await fetch(u);if(!r.ok)throw Error('Wikipedia is unavailable right now. Try again in a moment.');return r.json()}
 async function loadLinks(title){current=title;$('#currentTitle').textContent=title;let key=titleNorm(title);if(pageCache.has(key))return pageCache.get(key);let base={action:'query',titles:title,prop:'links',plnamespace:0,pllimit:'max'},continuation={},links=[],pageTitle=title;while(true){let data=await wiki({...base,...continuation});let page=Object.values(data.query.pages)[0];if(!page||page.missing)throw Error(`Couldn’t find the Wikipedia article “${title}”.`);pageTitle=page.title;links.push(...(page.links||[]).map(item=>item.title).filter(name=>!name.startsWith('Wikipedia:')&&!name.startsWith('Help:')));if(!data.continue)break;continuation=data.continue}pageCache.set(titleNorm(pageTitle),links);pageCache.set(key,links);current=pageTitle;$('#currentTitle').textContent=pageTitle;return links}
 async function stepTo(title){if(busy||won)return;busy=true;$('#searchBtn').disabled=true;$('#undoBtn').disabled=true;$('#searchBtn').textContent='Checking…';try{let links=pageCache.get(titleNorm(current));if(!links)links=await loadLinks(current);let match=links.find(item=>titleNorm(item)===titleNorm(title));if(!match){toast(`“${title}” isn’t linked from ${current}. Try a different article title.`);return}if(path.some(item=>titleNorm(item)===titleNorm(match))){toast('You’ve already visited that article.');return}startTimer();path.push(match);current=match;won=titleNorm(match)===titleNorm(pair[1]);if(won)stopTimer();renderPath();if(won){showWin()}else await loadLinks(current)}catch(e){toast(e.message)}finally{busy=false;$('#searchBtn').disabled=won;$('#searchBtn').textContent=won?'Reached!':'Enter →';$('#undoBtn').disabled=path.length<=1;}}
@@ -108,7 +290,7 @@ function showWin(){let s=$('#status'),hops=path.length-1,seconds=Math.floor(time
 function undo(){if(busy||path.length<=1)return;path.pop();current=path.at(-1);won=false;$('#status').className='status';$('#status').textContent='';$('#searchInput').disabled=false;renderPath();loadLinks(current).catch(e=>toast(e.message))}
 function toast(message){let el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),3200)}
 function closeFinish(){ $('#finishScreen').classList.remove('open');$('#finishScreen').setAttribute('aria-hidden','true') }
-$('#finishClose').onclick=closeFinish;$('#finishAgain').onclick=()=>{closeFinish();resetGame()};$('#finishRoute').onclick=()=>{closeFinish();document.querySelector('.right-panel').scrollIntoView({behavior:'smooth',block:'center'})};$('#searchForm').onsubmit=e=>{e.preventDefault();let query=$('#searchInput').value.trim();if(query){searchArticle(query).then(()=>{if(!won)$('#searchInput').value=''})}};$('#undoBtn').onclick=undo;$('#resetBtn').onclick=resetGame;$('#giveupBtn').onclick=()=>window.open('https://en.wikipedia.org/wiki/'+encodeURIComponent(current.replaceAll(' ','_')),'_blank','noopener');$('#newBtn').onclick=()=>{if(mode==='random')randomPair()};document.querySelectorAll('.mode-tab').forEach(button=>button.onclick=()=>selectMode(button.dataset.mode));$('#customForm').onsubmit=startCustom;$('#howBtn').onclick=()=>$('#modal').classList.add('open');$('#closeModal').onclick=$('#gotIt').onclick=()=>$('#modal').classList.remove('open');$('#modal').onclick=e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')};init();
+document.querySelectorAll('.map-view-btn').forEach(button=>button.onclick=()=>setMapView(button.dataset.mapView));$('#finishClose').onclick=closeFinish;$('#finishAgain').onclick=()=>{closeFinish();resetGame()};$('#finishRoute').onclick=()=>{closeFinish();document.querySelector('.right-panel').scrollIntoView({behavior:'smooth',block:'center'})};$('#searchForm').onsubmit=e=>{e.preventDefault();let query=$('#searchInput').value.trim();if(query){searchArticle(query).then(()=>{if(!won)$('#searchInput').value=''})}};$('#undoBtn').onclick=undo;$('#resetBtn').onclick=resetGame;$('#giveupBtn').onclick=()=>window.open('https://en.wikipedia.org/wiki/'+encodeURIComponent(current.replaceAll(' ','_')),'_blank','noopener');$('#newBtn').onclick=()=>{if(mode==='random')randomPair()};document.querySelectorAll('.mode-tab').forEach(button=>button.onclick=()=>selectMode(button.dataset.mode));$('#customForm').onsubmit=startCustom;$('#howBtn').onclick=()=>$('#modal').classList.add('open');$('#closeModal').onclick=$('#gotIt').onclick=()=>$('#modal').classList.remove('open');$('#modal').onclick=e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')};const updateTopbar=()=>document.querySelector('.topbar').classList.toggle('scrolled',window.scrollY>100);window.addEventListener('scroll',updateTopbar,{passive:true});updateTopbar();init();
 </script>
 </body>
 </html>
