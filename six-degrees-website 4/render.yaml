@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: six-degrees
-    runtime: static
-    buildCommand: echo "No build step needed"
-    staticPublishPath: ./outputs
-    autoDeployTrigger: commit
